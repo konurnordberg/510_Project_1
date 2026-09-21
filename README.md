@@ -1,10 +1,59 @@
-# 510_Project_1
-Project 1 repository for AIPI 510: Sourcing Data for Analytics. 
+# Signals or Noise? NVIDIA Through Stocks and Stars
 
-## Project Context
-NVIDIA's stock price is driven by many factors. Using a combination of two datasets from Kaggle, we investigate the below research questions. Beyond those, we generally clean, process, and analyze the publicly accessible data to see what stories it tells. 
+**Konur and Hadley | AIPI 510 | Duke University**
 
-## Two Interesting Research Questions to Answer from the Data:
+## Overview
 
-1. **Supply Chain Beta:** How strongly do supply disruptions or pullbacks in TSMC (TSM) predict lag-adjusted drawdowns in $NVDA?
-2. **GPU Cloud Frustration:** Do surges in 1-star GeForce NOW reviews correlate with overall consumer sentiment shifts during major tech product announcements?
+We explore two questions:
+- Do TSMC stock declines precede declines in NVIDIA’s stock?
+- Do GeForce NOW customer reviews reveal sentiment changes around product announcements?
+
+Our analysis includes data cleaning, feature engineering, visualizations, and before/after event comparisons.
+
+## Data
+
+Source: [samartalwar’s NVIDIA dataset on Kaggle, Version 4](https://www.kaggle.com/datasets/samartalwar/nvidia-360-stock-cloud-ux-and-semiconductor-macro).
+
+The raw files are included in `data/`:
+- `nvidia_daily_master_360.csv`: 4,280 days of market data.
+- `geforcenow_app_reviews_raw.csv`: 12,008 reviews with ratings, text, timestamps, and supplied sentiment labels.
+
+Announcement dates and source links are documented in `data/processed/event_study/event_catalogue.csv`.
+
+## Reproduce the Analysis
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/konurnordberg/510_Project_1.git
+cd 510_Project_1
+```
+
+### 2. Install dependencies
+
+```bash
+python -m pip install pandas numpy matplotlib seaborn kagglehub jupyterlab ipykernel
+```
+
+### 3. Launch Jupyter from the notebooks folder
+
+```bash
+cd notebooks
+jupyter lab
+```
+
+### 4. Run the notebooks in order
+
+1. `data_preprocessing.ipynb`
+2. `q1_supply_chain_beta.ipynb`
+3. `frustration_analysis.ipynb`
+
+Run each notebook from top to bottom. **Skip the Kaggle download cell in preprocessing:** use the included CSVs to reproduce our original results.
+
+Keep the working directory as `notebooks/` so the relative file paths work.
+
+Results appear in the notebooks. The combined dataset and saved event-study outputs are stored under `data/processed/`.
+
+## Limitations
+
+Reviews do not represent all customers, supplied sentiment labels can be misleading, and before/after differences do not establish causation. This project is exploratory and does not establish a reliable trading strategy.
